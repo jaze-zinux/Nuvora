@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#6557ff"
+    >
+
+  <link rel="manifest" href="manifest.json">
+    
+  <meta
+        name="description"
+        content="Nuvora helps you understand suspicious messages and links before you trust them."
+    >
+
+    <title>Nuvora — Digital Safety</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<!-- Animated background -->
+<div class="background">
+    <div class="blob blob-one"></div>
+    <div class="blob blob-two"></div>
+    <div class="blob blob-three"></div>
+
+    <div class="wave wave-one"></div>
+    <div class="wave wave-two"></div>
+</div>
+
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+    <a href="#home" class="brand">
+        <span class="brand-logo">N</span>
+
+        <span class="brand-text">
+            <strong>Nuvora</strong>
+            <small>digital safety</small>
+        </span>
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="#home">Home</a>
+        <a href="#scanner">Scanner</a>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+
+        <button
+            id="authBtn"
+            class="nav-auth"
+            type="button"
+        >
+            Sign in
+        </button>
+    </nav>
+
+    <button
+        id="menuBtn"
+        class="menu-btn"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+</header>
+
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu hidden">
+
+    <a href="#home">Home</a>
+    <a href="#scanner">Scanner</a>
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+
+    <button
+        id="mobileAuthBtn"
+        type="button"
+    >
+        Sign in
+    </button>
+
+</div>
+
+
+<main id="home">
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            Your digital safety companion
+        </div>
+
+        <h1>
+            Pause.
+            <span>Check.</span>
+            Trust.
+        </h1>
+
+        <p class="hero-description">
+            Nuvora helps you understand suspicious
+            messages, links and digital requests
+            before you take action.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                id="startBtn"
+                class="primary-btn"
+                type="button"
+            >
+                Start checking
+                <span>→</span>
+            </button>
+
+            <a
+                href="#how"
+                class="secondary-btn"
+            >
+                Learn how it works
+            </a>
+
+        </div>
+
+        <div class="trust-row">
+            <span>✓ Simple</span>
+            <span>✓ Privacy focused</span>
+            <span>✓ Mobile friendly</span>
+        </div>
+
+    </div>
+
+
+    <!-- HERO CARD -->
+    <div class="hero-card-area">
+
+        <div class="floating-card floating-top">
+            <span>Protection</span>
+            <strong>Active</strong>
+        </div>
+
+        <div class="security-card">
+
+            <div class="security-orb">
+                <div class="orb-ring"></div>
+                <div class="orb-shield">✦</div>
+            </div>
+
+            <span class="card-label">
+                NUVORA INTELLIGENCE
+            </span>
+
+            <h2>
+                Think before
+                you trust.
+            </h2>
+
+            <p>
+                Spot common warning signals
+                in everyday digital communication.
+            </p>
+
+            <div class="mini-meter">
+                <span></span>
+            </div>
+
+            <div class="card-footer">
+                <span>Safety engine</span>
+                <strong>READY</strong>
+            </div>
+
+        </div>
+
+        <div class="floating-card floating-bottom">
+            <span>Scanner</span>
+            <strong>● Ready</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCANNER -->
+<section id="scanner" class="section scanner-section">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">
+                NUVORA SCANNER
+            </span>
+
+            <h2>
+                Check something before you trust it.
+            </h2>
+
+            <p>
+                Choose a scanner and review the warning signals.
+            </p>
+        </div>
+
+        <div
+            id="accountStatus"
+            class="account-pill"
+        >
+            Guest mode
+        </div>
+
+    </div>
+
+
+    <div class="scanner-shell">
+
+        <!-- TABS -->
+        <div class="scanner-tabs">
+
+            <button
+                class="scanner-tab active"
+                data-tab="message"
+                type="button"
+            >
+                <span>💬</span>
+                Message
+            </button>
+
+            <button
+                class="scanner-tab"
+                data-tab="link"
+                type="button"
+            >
+                <span>🔗</span>
+                Link
+            </button>
+
+            <button
+                class="scanner-tab"
+                data-tab="screenshot"
+                type="button"
+            >
+                <span>📷</span>
+                Screenshot
+            </button>
+
+        </div>
+
+
+        <!-- MESSAGE SCANNER -->
+        <div
+            id="messageTab"
+            class="scanner-panel"
+        >
+
+            <label for="messageInput">
+                Paste the message you received
+            </label>
+
+            <textarea
+                id="messageInput"
+                maxlength="10000"
+                placeholder="Example: Your account has been locked. Verify your details immediately..."
+            ></textarea>
+
+            <div class="input-bottom">
+
+                <span id="counter">
+                    0 / 10000
+                </span>
+
+                <button
+                    id="clearBtn"
+                    type="button"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+            <button
+                id="analyzeMessage"
+                class="analyze-btn"
+                type="button"
+            >
+                Analyze message
+                <span>→</span>
+            </button>
+
+        </div>
+
+
+        <!-- LINK SCANNER -->
+        <div
+            id="linkTab"
+            class="scanner-panel hidden"
+        >
+
+            <label for="linkInput">
+                Enter a website URL
+            </label>
+
+            <input
+                id="linkInput"
+                type="url"
+                placeholder="https://example.com"
+                autocomplete="url"
+            >
+
+            <div class="info-box">
+                <span>ⓘ</span>
+
+                <p>
+                    Nuvora checks visible URL patterns.
+                    This does not guarantee that a website
+                    is safe or unsafe.
+                </p>
+            </div>
+
+            <button
+                id="analyzeLink"
+                class="analyze-btn"
+                type="button"
+            >
+                Check link
+                <span>→</span>
+            </button>
+
+        </div>
+
+
+        <!-- SCREENSHOT -->
+        <div
+            id="screenshotTab"
+            class="scanner-panel hidden"
+        >
+
+            <div
+                id="dropZone"
+                class="drop-zone"
+            >
+
+                <div class="upload-circle">
+                    ↑
+                </div>
+
+                <h3>
+                    Upload a screenshot
+                </h3>
+
+                <p>
+                    PNG, JPG or WEBP · Maximum 5 MB
+                </p>
+
+                <label class="upload-btn">
+
+                    Choose image
+
+                    <input
+                        id="fileInput"
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp"
+                    >
+
+                </label>
+
+                <div id="uploadStatus"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="result"
+            class="result hidden"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section id="features" class="section">
+
+    <div class="center-heading">
+
+        <span class="eyebrow">
+            FEATURES
+        </span>
+
+        <h2>
+            Digital safety without the complexity.
+        </h2>
+
+        <p>
+            Built around the moments when you need
+            a second opinion.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <article class="feature-card">
+
+            <div class="feature-number">
+                01
+            </div>
+
+            <div class="feature-icon">
+                ✦
+            </div>
+
+            <h3>
+                Clear risk signals
+            </h3>
+
+            <p>
+                See why something may deserve
+                extra attention instead of receiving
+                a confusing technical warning.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card">
+
+            <div class="feature-number">
+                02
+            </div>
+
+            <div class="feature-icon">
+                ◈
+            </div>
+
+            <h3>
+                Personal history
+            </h3>
+
+            <p>
+                Signed-in users can save their previous
+                checks and review them later.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card">
+
+            <div class="feature-number">
+                03
+            </div>
+
+            <div class="feature-icon">
+                ◎
+            </div>
+
+            <h3>
+                Everyday protection
+            </h3>
+
+            <p>
+                Designed for messages, links and
+                screenshots you encounter every day.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- HOW -->
+<section id="how" class="section how-section">
+
+    <div class="center-heading">
+
+        <span class="eyebrow">
+            HOW IT WORKS
+        </span>
+
+        <h2>
+            Three simple moments.
+        </h2>
+
+    </div>
+
+
+    <div class="steps-grid">
+
+        <article>
+            <span class="step-number">01</span>
+            <h3>Paste</h3>
+            <p>
+                Add the message or URL you want
+                to inspect.
+            </p>
+        </article>
+
+        <article>
+            <span class="step-number">02</span>
+            <h3>Check</h3>
+            <p>
+                Nuvora looks for common warning
+                patterns.
+            </p>
+        </article>
+
+        <article>
+            <span class="step-number">03</span>
+            <h3>Decide</h3>
+            <p>
+                Understand the result and choose
+                your next step carefully.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- HISTORY -->
+<section
+    id="historySection"
+    class="section history-section hidden"
+>
+
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">
+                YOUR ACCOUNT
+            </span>
+
+            <h2>
+                Recent checks
+            </h2>
+        </div>
+
+    </div>
+
+    <div id="history"></div>
+
+</section>
+
+</main>
+
+
+<!-- AUTH MODAL -->
+<div
+    id="authModal"
+    class="modal hidden"
+>
+
+    <div class="auth-box">
+
+        <button
+            id="closeAuth"
+            class="close-btn"
+            type="button"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <div class="auth-logo">
+            N
+        </div>
+
+        <span class="eyebrow">
+            NUVORA ACCOUNT
+        </span>
+
+        <h2 id="authTitle">
+            Welcome back
+        </h2>
+
+        <p id="authSubtitle">
+            Sign in to save your safety checks.
+        </p>
+
+        <form id="authForm">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Minimum 6 characters"
+                minlength="6"
+                autocomplete="current-password"
+                required
+            >
+
+            <button
+                id="submitAuth"
+                class="primary-btn full"
+                type="submit"
+            >
+                Sign in
+            </button>
+
+        </form>
+
+        <button
+            id="switchAuth"
+            class="switch-auth"
+            type="button"
+        >
+            Create an account
+        </button>
+
+        <p
+            id="authMessage"
+            class="auth-message"
+        ></p>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div
+    id="toast"
+    class="toast hidden"
+></div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-brand">
+
+        <span class="brand-logo small">
+            N
+        </span>
+
+        <strong>
+            Nuvora
+        </strong>
+
+    </div>
+
+    <span>
+        Know before you trust.
+    </span>
+
+    <span>
+        © 2026 Nuvora
+    </span>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
