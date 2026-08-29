@@ -239,26 +239,13 @@ a {
     width: 43px;
     height: 43px;
 
-    display: grid;
-    place-items: center;
+    display: block;
+
+    object-fit: cover;
 
     border-radius: 14px;
 
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
-
-    font-family:
-        "Plus Jakarta Sans",
-        sans-serif;
-
-    font-size: 18px;
-    font-weight: 800;
+    flex-shrink: 0;
 
     box-shadow:
         0 12px 30px rgba(101, 87, 255, 0.24);
